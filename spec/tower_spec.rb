@@ -40,6 +40,24 @@ RSpec.describe Tower do
     end
   end
 
+  describe "#pop" do
+    context "tower has rings" do
+      it "returns the ring at the top of the stack" do
+        tower = Tower.new(rings: [Ring[2], Ring[1]])
+
+        expect(tower.pop).to eq Ring[1]
+      end
+    end
+
+    context "tower has no rings" do
+      it "raises an error" do
+        tower = Tower.new
+
+        expect{tower.pop}.to raise_error NoRings
+      end
+    end
+  end
+
   describe "#==" do
     context "comparing towers with the same rings" do
       it "returns true" do
